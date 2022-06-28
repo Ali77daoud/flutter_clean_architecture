@@ -1,0 +1,1 @@
+const noInternetErrorMessage = "please check your internet connection";
