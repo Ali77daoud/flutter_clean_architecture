@@ -49,10 +49,10 @@ class AddDeleteUpdatePostBloc
         });
         ////////////////////////////////////////////////////////////////////////////
       } else if (event is DeletePostEvent) {
-        
         emit(LoadingAddDeleteUpdatePostState());
 
-        final failureOrSuccessMessage = await deletePostUseCase.call(event.postId);
+        final failureOrSuccessMessage =
+            await deletePostUseCase.call(event.postId);
 
         failureOrSuccessMessage.fold((failure) {
           emit(ErrorAddDeleteUpdatePostState(message: failureMessage(failure)));

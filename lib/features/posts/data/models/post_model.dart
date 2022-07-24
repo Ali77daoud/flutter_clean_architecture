@@ -2,7 +2,7 @@ import 'package:clean_archeticture/features/posts/domain/entities/post.dart';
 
 class PostModel extends Post {
   const PostModel({
-    required int id,
+    int? id,
     required String title,
     required String body,
   }) : super(id: id, body: body, title: title);

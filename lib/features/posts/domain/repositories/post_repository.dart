@@ -12,3 +12,4 @@ abstract class PostRepository{
 
   Future <Either<Failure , Unit >> addPost(Post post);
 }
+

@@ -49,7 +49,7 @@ class PostsRepositoryImp implements PostRepository {
   @override
   Future<Either<Failure, Unit>> addPost(Post post) async{
     //convert to postmodel
-    final PostModel postModel = PostModel(id: post.id, title: post.title, body: post.body);
+    final PostModel postModel = PostModel(title: post.title, body: post.body);
 
     // if(await networkInfo.isConnected){
     //   try{
@@ -62,7 +62,7 @@ class PostsRepositoryImp implements PostRepository {
     // }else{
     //   return Left(OffLineFailure());
     // }
-    return await getMessage(() => remoteDataSource.addPost(postModel));
+    return await validateAddDeleteUpdatePost(() => remoteDataSource.addPost(postModel));
 
   }
 
@@ -81,7 +81,7 @@ class PostsRepositoryImp implements PostRepository {
     // }else{
     //   return Left(OffLineFailure());
     // }
-    return await getMessage(() => remoteDataSource.updatePost(postModel));
+    return await validateAddDeleteUpdatePost(() => remoteDataSource.updatePost(postModel));
   }
 
   @override
@@ -97,10 +97,10 @@ class PostsRepositoryImp implements PostRepository {
     // }else{
     //   return Left(OffLineFailure());
     // }
-    return await getMessage(() => remoteDataSource.deletePost(id));
+    return await validateAddDeleteUpdatePost(() => remoteDataSource.deletePost(id));
   }
 
-  Future<Either<Failure, Unit>> getMessage(DeleteOrupdateOradd deleteOrupdateOradd )async{
+  Future<Either<Failure, Unit>> validateAddDeleteUpdatePost(DeleteOrupdateOradd deleteOrupdateOradd )async{
     if(await networkInfo.isConnected){
       try{
         await deleteOrupdateOradd();

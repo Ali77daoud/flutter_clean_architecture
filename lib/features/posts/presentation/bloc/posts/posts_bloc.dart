@@ -4,12 +4,24 @@ import 'package:clean_archeticture/core/strings/error.dart';
 import 'package:clean_archeticture/features/posts/domain/entities/post.dart';
 import 'package:clean_archeticture/features/posts/domain/usecases/get_all_post.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:clean_archeticture/injection_container.dart' as de;
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'posts_event.dart';
 part 'posts_state.dart';
 
 class PostsBloc extends Bloc<PostsEvent, PostsState> {
+
   final GetAllPostsUseCase getAllPosts;
+
+  SharedPreferences sh = de.sl();
+
+ 
+
+  // boolisDark = sh.getBool('isDark')??false;
+
+
 
   PostsBloc({ required this.getAllPosts }) : super(PostsInitial()) {
     
@@ -29,6 +41,9 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
           );
 
       }
+
+     
+
     });
   }
 

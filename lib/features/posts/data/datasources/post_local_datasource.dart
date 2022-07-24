@@ -15,8 +15,8 @@ const cachedPosts = "cached_posts";
 class PostsLocalDataSourceImp implements PostslocalDataSource{
   final SharedPreferences sharedPreferences;
 
-
   PostsLocalDataSourceImp({required this.sharedPreferences});
+
   @override
   Future<Unit> cachPosts(List<PostModel> postModels) {
     List postModelToJson = postModels.map((postModel) => postModel.toJson()).toList();
@@ -43,3 +43,5 @@ class PostsLocalDataSourceImp implements PostslocalDataSource{
   }
 
 }
+
+
